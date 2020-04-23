@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Chat</title>
+    <style type="text/css">
+        #chat-button {
+            display: none;
+        }
+
+            #chat-button.purecloud-chat-available {
+                display: inline;
+            }
+
+        .form-Title {
+            font-family: "Roboto",Arial,sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            color: black;
+        }
+
+        .form-label {
+            font-family: "Roboto",Arial,sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            color: black;
+        }
+
+        .form-button {
+            font-family: "Roboto",Arial,sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .form-hours {
+            font-family: "Roboto",Arial,sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            color: Black;
+        }
+
+        .scroll-wrapper {
+            -webkit-overflow-scrolling: touch;
+            overflow-y: scroll;
+            /* important:  dimensions or positioning here! */
+        }
+    </style>
+</head>
+
+<body>
+    <form id="chatForm" method="GET">
+        <h3 class="form-Title">Thank you for contacting Styx Analytics </h3>
+        <span class="form-hours">
+            Monday – Thursday: 9:00am – 8:00pm EST
+            <br />
+            Friday: 9:00am - 6:00pm EST
+        </span>
+        <table class="webchat-config">
+            <tbody>
+                <tr>
+                    <th class="form-label">First Name:&nbsp;</th>
+                    <td class="form-label"><input type="text" id="first-name" value="" /></td>
+                </tr>
+                <tr>
+                    <th class="form-label">Last Name:&nbsp;</th>
+                    <td class="form-label"><input type="text" id="last-name" value="" /></td>
+                </tr>
+                <tr>
+                    <th class="form-label">Phone:&nbsp;</th>
+                    <td class="form-label"><input type="text" id="phone" value="" /></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" class="form-button" id="chat-button">Start Chat</button>
+    </form>
+    <div id="chat-container" class="scroll-wrapper" style="height:300px"></div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+<script
+  id="purecloud-webchat-js"
+  type="text/javascript"
+  src="https://apps.mypurecloud.com/webchat/jsapi-v1.js"
+  region="us-east-1"
+  org-guid="07b4f3bc-fa97-4938-b25a-39cb08baed6e"
+  deployment-key="b81ccf2f-69fa-495f-b22e-e2b44d0bd2a4"
+></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            document.getElementById('first-name').value = getParameterByName('fname');
+            document.getElementById('last-name').value = getParameterByName('lname');
+            document.getElementById('phone').value = getParameterByName('phone');
+        });
+
+        (function (window) {
+            window.PURECLOUD_WEBCHAT_FRAME_CONFIG = {
+                containerEl: 'chat-container'
+            };
+            var chatConfig = {
+                webchatAppUrl: 'https://apps.mypurecloud.com/webchat',
+                webchatServiceUrl: 'https://realtime.mypurecloud.com:443',
+                orgGuid: '07b4f3bc-fa97-4938-b25a-39cb08baed6e',
+                orgId: '17907',
+                orgName: 'psglobalqa',
+                queueName: 'MF_ASCMv1',
+
+                locale: 'en',
+                logLevel: 'INFO',
+                companyLogoSmall: '',
+                welcomeMessage: 'Thank you for contacting Styx Analytics.',
+
+                cssClass: 'webchat-frame',
+                css: {
+                    width: '100%',
+                    height: '100%'
+                },
+
+                cobrowseConfig: {
+                    deploymentKey: '80k4ndmc3GDXDKLgxxB2VRSu48ZmXIZY'
+                },
+
+                offlineSchedules: [
+                    {
+                        day: 'Saturday,Sunday',
+                        city: 'America/New_York'
+                    },
+
+                    /*The proprty 'month' below is 0 index based i.e. month January starts with 0*/
+                    /*2019*/
+                    {
+                        date: 01,
+                        month: 06,
+                        year: 2019,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 05,
+                        month: 07,
+                        year: 2019,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 02,
+                        month: 08,
+                        year: 2019,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 14,
+                        month: 09,
+                        year: 2019,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 25,
+                        month: 11,
+                        year: 2019,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 26,
+                        month: 11,
+                        year: 2019,
+                        city: 'America/New_York'
+                    },
+
+                    /*2020*/
+                    {
+                        date: 01,
+                        month: 00,
+                        year: 2020,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 17,
+                        month: 01,
+                        year: 2020,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 10,
+                        month: 03,
+                        year: 2020,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 18,
+                        month: 04,
+                        year: 2020,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 01,
+                        month: 06,
+                        year: 2020,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 03,
+                        month: 07,
+                        year: 2020,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 07,
+                        month: 08,
+                        year: 2020,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 12,
+                        month: 09,
+                        year: 2020,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 25,
+                        month: 11,
+                        year: 2020,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 26,
+                        month: 11,
+                        year: 2020,
+                        city: 'America/New_York'
+                    },
+
+                    /*2021*/
+                    {
+                        date: 01,
+                        month: 00,
+                        year: 2021,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 15,
+                        month: 01,
+                        year: 2021,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 02,
+                        month: 03,
+                        year: 2021,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 24,
+                        month: 04,
+                        year: 2021,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 01,
+                        month: 06,
+                        year: 2021,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 02,
+                        month: 07,
+                        year: 2021,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 06,
+                        month: 08,
+                        year: 2021,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 11,
+                        month: 09,
+                        year: 2021,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 25,
+                        month: 11,
+                        year: 2021,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 26,
+                        month: 11,
+                        year: 2021,
+                        city: 'America/New_York'
+                    },
+
+                    /*2022*/
+                    {
+                        date: 01,
+                        month: 00,
+                        year: 2022,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 21,
+                        month: 01,
+                        year: 2022,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 15,
+                        month: 03,
+                        year: 2022,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 23,
+                        month: 04,
+                        year: 2022,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 01,
+                        month: 06,
+                        year: 2022,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 01,
+                        month: 07,
+                        year: 2022,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 05,
+                        month: 08,
+                        year: 2022,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 10,
+                        month: 09,
+                        year: 2022,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 25,
+                        month: 11,
+                        year: 2022,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 26,
+                        month: 11,
+                        year: 2022,
+                        city: 'America/New_York'
+                    },
+
+                    /*2023*/
+                    {
+                        date: 01,
+                        month: 00,
+                        year: 2023,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 20,
+                        month: 01,
+                        year: 2023,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 07,
+                        month: 03,
+                        year: 2023,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 22,
+                        month: 04,
+                        year: 2023,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 01,
+                        month: 06,
+                        year: 2023,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 07,
+                        month: 07,
+                        year: 2023,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 04,
+                        month: 08,
+                        year: 2023,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 09,
+                        month: 09,
+                        year: 2023,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 25,
+                        month: 11,
+                        year: 2023,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 26,
+                        month: 11,
+                        year: 2023,
+                        city: 'America/New_York'
+                    },
+
+                    /*2024*/
+                    {
+                        date: 01,
+                        month: 00,
+                        year: 2024,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 19,
+                        month: 01,
+                        year: 2024,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 29,
+                        month: 02,
+                        year: 2024,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 20,
+                        month: 04,
+                        year: 2024,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 01,
+                        month: 06,
+                        year: 2024,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 05,
+                        month: 07,
+                        year: 2024,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 02,
+                        month: 08,
+                        year: 2024,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 14,
+                        month: 09,
+                        year: 2024,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 25,
+                        month: 11,
+                        year: 2024,
+                        city: 'America/New_York'
+                    },
+                    {
+                        date: 26,
+                        month: 11,
+                        year: 2024,
+                        city: 'America/New_York'
+                    }
+                ],
+
+                onlineSchedules: [{
+                    day: 'Monday-Thursday',
+                    time: '0900-2000',
+                    city: 'America/New_York'
+                },
+                {
+                    day: 'Friday',
+                    time: '0900-1800',
+                    city: 'America/New_York'
+                }],
+
+                chatNowElement: 'chat-button',
+                showSubmitButton: true
+            };
+
+            window.ININ.webchat.create(chatConfig).then(function (webchat) {
+                var startChatButton = document.getElementById('chat-button');
+                startChatButton.onclick = function onStartChatClick() {
+                    $(".webchat-frame").remove();
+
+                    window.ININ.webchat.create(chatConfig).then(function (webchat) {
+
+                        var firstName = document.getElementById('first-name').value;
+                        var lastName = document.getElementById('last-name').value;
+                        var phone = document.getElementById('phone').value;
+                        webchat.getConfig().setData({
+                            firstName: firstName,
+                            lastName: lastName,
+                            addressStreet: '',
+                            addressCity: '',
+                            addressPostalCode: '',
+                            addressState: '',
+                            phoneNumber: phone,
+                            phoneType: '',
+                            customerId: 1
+                        });
+
+                        return webchat.renderPopup({
+                            width: 400,
+                            height: 400,
+                            title: 'Chat'
+                        });
+                    })
+                };
+            });
+        })(window);
+    </script>
+
+</body>
+</html>
